@@ -7,7 +7,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-testem": "^0.5.16",
-    "grunt-parts": "^0.5.1"
+    "grunt-parts": "^0.5.2"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
