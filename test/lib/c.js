@@ -1,9 +1,11 @@
-function main(data) {
-  data.push('C');
-}
+(function() {
+  function main(data) {
+    data.push('C');
+  }
 
-if (typeof define === 'function') {
-  define('D', function() {
-    return main;
-  });
-}
+  if (typeof define === 'function') {
+    define('D', function() {
+      return main;
+    });
+  }
+})();
