@@ -20,11 +20,10 @@ describe 'TinyRJS', ->
 
   it 'should load dependencies in order', (done) ->
     rjs.require ['b'], (b) ->
-      console.log b, typeof b, arguments
-      #stack = []
-      #b(stack)
+      stack = []
+      b(stack)
 
-      #expect(stack).toEqual ['B', 'C']
+      expect(stack).toEqual ['B', 'C']
       done()
 
   xdescribe 'support for define.amd modules', ->
