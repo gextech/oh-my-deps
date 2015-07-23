@@ -21,5 +21,3 @@ rjs.require ['jquery', 'moment', 'moment/locale/es'], ($, m) ->
     $el = $(this)
     $el.text m($el.data('date'), 'YYYYMMDD').fromNow()
 ```
-
-TODO

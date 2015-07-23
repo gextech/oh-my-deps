@@ -4,8 +4,6 @@ stack = null
   .forEach (id) ->
     rjs.define "test/lib/#{id}.js", id
 
-Promise = require('es6-promise').Promise unless Promise?
-
 rjs.define 'bower_components/jquery/dist/jquery.js', 'jquery'
 rjs.define 'bower_components/moment/moment.js', 'moment'
 rjs.define 'bower_components/moment/locale/es.js', 'moment/locale/es'
@@ -40,7 +38,7 @@ describe 'TinyRJS', ->
       expect(test.called).toBeTruthy()
       expect(test).toBe t
 
-  it 'should allow callbacks as dependencies to run (promise)', (done) ->
+  xit 'should allow callbacks as dependencies to run (promise)', (done) ->
     test = ->
       new Promise (resolve) ->
         setTimeout ->
