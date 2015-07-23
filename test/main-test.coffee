@@ -30,6 +30,36 @@ describe 'TinyRJS', ->
       expect(c).toBe D
       done()
 
+  it 'should allow callbacks as dependencies to run (sync)', ->
+    test = ->
+      test.called = true
+
+    rjs.require [test], ->
+      expect(test.called).toBeTruthy()
+
+  it 'should allow callbacks as dependencies to run (promise)', (done) ->
+    test = ->
+      new Promise (resolve) ->
+        setTimeout ->
+          test.called = true
+          resolve()
+        , 200
+
+    rjs.require [test], ->
+      expect(test.called).toBeTruthy()
+      done()
+
+  it 'should allow callbacks as dependencies to run (callback)', (done) ->
+    test = (next) ->
+      setTimeout ->
+        test.called = true
+        next()
+      , 200
+
+    rjs.require [test], ->
+      expect(test.called).toBeTruthy()
+      done()
+
   describe 'support for define.amd modules', ->
     it 'should jQuery pollute the global scope?', (done) ->
       expect(window.jQuery).toBeUndefined()
