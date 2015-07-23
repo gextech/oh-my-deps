@@ -1,4 +1,4 @@
-['a', 'b', 'c'].reverse()
+'abc'.split('').reverse()
   .forEach (id) ->
     rjs.define "test/lib/#{id}.js", id
 
@@ -26,7 +26,7 @@ describe 'TinyRJS', ->
       expect(stack).toEqual ['B', 'C']
       done()
 
-  xdescribe 'support for define.amd modules', ->
+  describe 'support for define.amd modules', ->
     it 'should jQuery pollute the global scope?', (done) ->
       expect(window.jQuery).toBeUndefined()
 
@@ -34,8 +34,11 @@ describe 'TinyRJS', ->
         expect(window.jQuery).toBe j
         done()
 
-    it 'should moment.js pollute the global scope?', (done) ->
+    it 'should moment.js load its locales asynchronously?', (done) ->
       rjs.require ['moment', 'moment/locale/es'], (m) ->
         expect(window.moment).toBeUndefined()
-        console.log m().endOf('day').fromNow()
+
+        expect(m('19870610', 'YYYYMMDD').fromNow())
+          .toEqual "hace #{(new Date()).getFullYear() - 1987} años"
+
         done()
