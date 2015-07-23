@@ -38,7 +38,7 @@ describe 'TinyRJS', ->
       expect(test.called).toBeTruthy()
       expect(test).toBe t
 
-  xit 'should allow callbacks as dependencies to run (promise)', (done) ->
+  it 'should allow callbacks as dependencies to run (promise)', (done) ->
     test = ->
       new Promise (resolve) ->
         setTimeout ->
