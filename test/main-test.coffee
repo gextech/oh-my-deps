@@ -63,6 +63,11 @@ describe 'TinyRJS', ->
       expect(t).toEqual x: 'y'
       done()
 
+  it 'should throw an error on missing dependencies', ->
+    expect(->
+      rjs.require ['m']
+    ).toThrow()
+
   describe 'support for define.amd modules', ->
     it 'should jQuery pollute the global scope?', (done) ->
       expect(window.jQuery).toBeUndefined()
