@@ -32,31 +32,35 @@ describe 'TinyRJS', ->
   it 'should allow callbacks as dependencies to run (sync)', ->
     test = ->
       test.called = true
+      test
 
-    rjs.require [test], ->
+    rjs.require [test], (t) ->
       expect(test.called).toBeTruthy()
+      expect(test).toBe t
 
   it 'should allow callbacks as dependencies to run (promise)', (done) ->
     test = ->
       new Promise (resolve) ->
         setTimeout ->
           test.called = true
-          resolve()
+          resolve x: 'y'
         , 200
 
-    rjs.require [test], ->
+    rjs.require [test], (t) ->
       expect(test.called).toBeTruthy()
+      expect(t).toEqual x: 'y'
       done()
 
   it 'should allow callbacks as dependencies to run (callback)', (done) ->
     test = (next) ->
       setTimeout ->
         test.called = true
-        next()
+        next x: 'y'
       , 200
 
-    rjs.require [test], ->
+    rjs.require [test], (t) ->
       expect(test.called).toBeTruthy()
+      expect(t).toEqual x: 'y'
       done()
 
   describe 'support for define.amd modules', ->
