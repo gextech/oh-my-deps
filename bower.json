@@ -15,7 +15,6 @@
   ],
   "devDependencies": {
     "moment": "~2.10.3",
-    "jquery": "~2.1.4",
-    "lodash": "~3.10.0"
+    "jquery": "~2.1.4"
   }
 }

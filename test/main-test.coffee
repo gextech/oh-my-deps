@@ -5,7 +5,6 @@ stack = null
     rjs.define "test/lib/#{id}.js", id
 
 rjs.define 'bower_components/jquery/dist/jquery.js', 'jquery'
-rjs.define 'bower_components/lodash/lodash.js', 'lodash'
 rjs.define 'bower_components/moment/moment.js', 'moment'
 rjs.define 'bower_components/moment/locale/es.js', 'moment/locale/es'
 
