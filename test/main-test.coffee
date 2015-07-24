@@ -68,7 +68,7 @@ describe 'TinyRJS', ->
       rjs.require ['m']
     ).toThrow()
 
-  xdescribe 'support for define.amd modules', ->
+  describe 'support for define.amd modules', ->
     it 'should jQuery pollute the global scope?', (done) ->
       expect(window.jQuery).toBeUndefined()
 
