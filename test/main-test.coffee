@@ -1,6 +1,6 @@
 stack = null
 
-'abc'.split('').reverse()
+'abcx'.split('').reverse()
   .forEach (id) ->
     rjs.define "test/lib/#{id}.js", id
 
@@ -68,6 +68,22 @@ describe 'TinyRJS', ->
     expect(->
       rjs.require ['m']
     ).toThrow()
+
+  it  'should throw an error on indeterminated dependencies', (done) ->
+    error = null
+
+    window.onerror = (e) ->
+      error = e
+      true
+
+    rjs.require ['x'], (x) ->
+      delete window.onerror
+
+      x(stack)
+      expect(stack).toEqual ['X']
+      expect(error).toContain 'indeterminate definition'
+
+      done()
 
   describe 'support for define.amd modules', ->
     it 'should jQuery pollute the global scope?', (done) ->
