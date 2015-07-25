@@ -1,13 +1,16 @@
 {
   "name": "tiny-rjs",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "homepage": "https://github.com/gextech/tiny-rjs",
   "authors": [
     "Alvaro Cabrera <pateketrueke@gmail.com>"
   ],
   "license": "MIT",
+  "main": ["lib/index.js"],
   "ignore": [
     "**/.*",
+    "Gruntfile.coffee",
+    "generated",
     "node_modules",
     "bower_components",
     "test",
