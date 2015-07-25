@@ -1,6 +1,6 @@
 stack = null
 
-'abcx'.split('').reverse()
+'abcxyz'.split('').reverse()
   .forEach (id) ->
     rjs.define "test/lib/#{id}.js", id
 
@@ -66,7 +66,7 @@ describe 'TinyRJS', ->
 
   it 'should throw an error on missing dependencies', ->
     expect(->
-      rjs.require ['m']
+      rjs.require ['im_not_exists']
     ).toThrow()
 
   it  'should throw an error on indeterminated dependencies', (done) ->
@@ -83,6 +83,14 @@ describe 'TinyRJS', ->
       expect(stack).toEqual ['X']
       expect(error).toContain 'indeterminate definition'
 
+      done()
+
+  it 'should handle asynchronously loading of all dependencies', (done) ->
+    rjs.require ['y'], (y) ->
+      expect(y).toBe 'Y'
+
+    rjs.require ['z'], (z) ->
+      expect(z).toBe 'Z'
       done()
 
   describe 'support for define.amd modules', ->

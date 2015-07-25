@@ -8,10 +8,6 @@
       return main;
     });
 
-    define('y', function() {
-      return 'OK';
-    });
-
     define(function() {
       throw new Error('this should not be allowed');
     });
