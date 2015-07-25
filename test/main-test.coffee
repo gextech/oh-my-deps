@@ -8,6 +8,11 @@ rjs.define 'bower_components/jquery/dist/jquery.js', 'jquery'
 rjs.define 'bower_components/jquery.dfp/jquery.dfp.js', 'jquery.dfp'
 rjs.define 'bower_components/moment/moment.js', 'moment'
 rjs.define 'bower_components/moment/locale/es.js', 'moment/locale/es'
+rjs.define 'bower_components/swiper/dist/js/swiper.jquery.js', 'swiper'
+rjs.define 'bower_components/masonry/dist/masonry.pkgd.js', 'masonry'
+rjs.define 'bower_components/semantic-ui/dist/semantic.js', 'semantic-ui'
+rjs.define 'bower_components/lodash/lodash.js', 'lodash'
+rjs.define 'bower_components/ractive/ractive.js', 'ractive'
 
 describe 'TinyRJS', ->
   beforeEach ->
@@ -93,26 +98,30 @@ describe 'TinyRJS', ->
       expect(z).toBe 'Z'
       done()
 
-  describe 'support for define.amd modules', ->
-    it 'should jQuery pollute the global scope?', (done) ->
-      expect(window.jQuery).toBeUndefined()
-
-      rjs.require ['jquery'], (j) ->
-        expect(window.jQuery).toBe j
+  describe 'support for define.amd modules? No', ->
+    it 'should jQuery pollute the global scope? Yes', (done) ->
+      rjs.require ['jquery'], ->
+        expect($).not.toBeUndefined()
         done()
 
-    it 'should jQuery-DFP pollute the global scope?', (done) ->
-      expect($.dfp).toBeUndefined()
-
+    it 'should jQuery-DFP pollute the global scope? Yes', (done) ->
       rjs.require ['jquery.dfp'], ->
-        expect(typeof $.dfp).toBe 'function'
+        expect($.dfp).not.toBeUndefined()
         done()
 
-    it 'should moment.js load its locales asynchronously?', (done) ->
-      rjs.require ['moment', 'moment/locale/es'], (m) ->
-        expect(window.moment).toBeUndefined()
-
-        expect(m('19870610', 'YYYYMMDD').fromNow())
+    it 'should moment.js load its locales asynchronously? No', (done) ->
+      rjs.require ['moment', 'moment/locale/es'], ->
+        expect(moment('19870610', 'YYYYMMDD').fromNow())
           .toEqual "hace #{(new Date()).getFullYear() - 1987} años"
 
+        done()
+
+    it 'should load most dependencies asynchronously always? Yes', (done) ->
+      rjs.require ['ractive', 'masonry', 'swiper', 'lodash', 'semantic-ui'], ->
+        expect(Ractive).not.toBeUndefined()
+        expect($.fn.masonry).not.toBeUndefined()
+        expect($.fn.swiper).not.toBeUndefined()
+        expect(_).not.toBeUndefined()
+        expect($.fn.visibility).not.toBeUndefined()
+        expect(arguments.length).toBe 5 # should be 0
         done()
