@@ -98,7 +98,7 @@ describe 'TinyRJS', ->
       expect(z).toBe 'Z'
       done()
 
-  describe 'support for define.amd modules? No', ->
+  describe 'support for non AMD modules?', ->
     it 'should jQuery pollute the global scope? Yes', (done) ->
       rjs.require ['jquery'], ->
         expect($).not.toBeUndefined()
