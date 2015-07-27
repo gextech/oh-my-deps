@@ -1,6 +1,6 @@
 stack = null
 
-'abcxyz'.split('').reverse()
+'abcxyzmn'.split('').reverse()
   .forEach (id) ->
     rjs.define "test/lib/#{id}.js", id
 
@@ -98,6 +98,15 @@ describe 'TinyRJS', ->
       expect(z).toBe 'Z'
       done()
 
+  it 'should resolve all arguments in order for all dependencies', (done) ->
+    x = -> x: 'xy'
+    y = -> y: 'yx'
+
+    rjs.require ['m', x, 'n', y], (x, y) ->
+      expect(x).toEqual x: 'xy'
+      expect(y).toEqual y: 'yx'
+      done()
+
   describe 'support for non AMD modules?', ->
     it 'should jQuery pollute the global scope? Yes', (done) ->
       rjs.require ['jquery'], ->
@@ -123,5 +132,5 @@ describe 'TinyRJS', ->
         expect($.fn.swiper).not.toBeUndefined()
         expect(_).not.toBeUndefined()
         expect($.fn.visibility).not.toBeUndefined()
-        expect(arguments.length).toBe 5 # should be 0
+        expect(arguments.length).toBe 0
         done()
