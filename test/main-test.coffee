@@ -23,3 +23,15 @@ describe 'TinyRJS', ->
       rjs.require ['jquery'], ->
         expect(window.jQuery).not.toBeUndefined()
         done()
+
+    it 'should load all external dependencies in order', (done) ->
+      expect(window.moment).toBeUndefined()
+
+      rjs.define 'moment', 'bower_components/moment/moment.js'
+      rjs.define 'moment/locale/es', 'bower_components/moment/locale/es.js'
+
+      rjs.require ['moment', 'moment/locale/es'], ->
+        expect(moment('19870610', 'YYYYMMDD').fromNow())
+          .toEqual "hace #{(new Date()).getFullYear() - 1987} años"
+
+        done()
