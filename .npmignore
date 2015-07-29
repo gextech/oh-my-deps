@@ -3,6 +3,7 @@
 *.zip
 *.tgz
 *.log
+*.json
 
 README.md
 gulpfile.*
