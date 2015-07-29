@@ -24,7 +24,7 @@ describe 'TinyRJS', ->
         expect(window.jQuery).not.toBeUndefined()
         done()
 
-    it 'should load all external dependencies in order', (done) ->
+    it 'should load all external dependencies in order (async: false)', (done) ->
       expect(window.moment).toBeUndefined()
 
       rjs.define 'moment', 'bower_components/moment/moment.js'
