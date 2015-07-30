@@ -9,6 +9,7 @@
   "main": ["lib/index.js"],
   "ignore": [
     "**/.*",
+    "**/*.json",
     "Gruntfile.coffee",
     "generated",
     "node_modules",
