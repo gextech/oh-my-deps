@@ -31,8 +31,8 @@ describe 'Oh my deps!', ->
         expect(data).toEqual "hace #{(new Date()).getFullYear() - 1987} años"
         done()
 
-    oh.define 'moment', 'bower_components/moment/moment.js'
     oh.define 'moment/locale/es', 'bower_components/moment/locale/es.js'
+    oh.define 'moment', 'bower_components/moment/moment.js'
 
     oh.require ['test', 'moment', 'moment/locale/es'], (test) ->
       test moment('19870610', 'YYYYMMDD').fromNow()
