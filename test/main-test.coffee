@@ -6,6 +6,11 @@ describe 'Oh my deps!', ->
       expect(data).toBe 'OK'
       done()
 
+  it 'should fail on missing definitions', (done) ->
+    oh.require ['im_not_exists'], (error) ->
+      expect(error).toThrow()
+      done()
+
   it 'should allow to define modules with dependencies', (done) ->
     oh.define 'mixed', -> 'MIXED'
     oh.define 'composed', ['mixed'], (data) -> ['COMPOSED', data]
