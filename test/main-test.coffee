@@ -7,9 +7,8 @@ describe 'Oh my deps!', ->
       done()
 
   it 'should fail on missing definitions', (done) ->
-    oh.require ['im_not_exists'], (error) ->
-      expect(error).toThrow()
-      done()
+    expect(-> oh.require ['im_not_exists']).toThrow()
+    done()
 
   it 'should allow to define modules with dependencies', (done) ->
     oh.define 'mixed', -> 'MIXED'
