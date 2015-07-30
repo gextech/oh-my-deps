@@ -1,6 +1,6 @@
 # Oh my deps!
 
-[![Build Status](https://api.travis-ci.org/gextech/oh-my-deps.png?branch=master)](https://travis-ci.org/gextech/oh-my-deps?branch=master) [![NPM version](https://badge.fury.io/js/oh-my-deps.png)](http://badge.fury.io/js/oh-my-deps)
+![TravisCI](https://img.shields.io/travis/gextech/oh-my-deps/master.svg) ![NPM](https://img.shields.io/npm/v/oh-my-deps.svg) ![Bower](https://img.shields.io/bower/v/oh-my-deps.svg)
 
 We want to do this:
 
@@ -22,8 +22,11 @@ oh.require ['dummy', 'moment', 'moment/locale/es'], (dummy) ->
 
 Consider the following constraints:
 
-- OMD was designed for working with existing libraries in the Bower registry.
-- Most of them are namespaced or their globals are not enough harmful.
 - Calling `oh.require()` will load all scripts in sequence.
-- This script loader has no support for AMD.
+- This script loader has no support for AMD/UMD.
+- This is not an RequireJS implementation.
 - Under development. &infin;
+
+OMD was designed for working with existing libraries in the Bower registry.
+
+Most of them are in their own namespaces or their globals are not enough harmful.
