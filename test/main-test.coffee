@@ -40,3 +40,10 @@ describe 'Oh my deps!', ->
 
     oh.require ['test', 'moment', 'moment/locale/es'], (test) ->
       test moment('19870610', 'YYYYMMDD').fromNow()
+
+  it 'should fail silently on missing dependencies (?)', (done) ->
+    oh.define 'missing', 'http://im.not.exists/so.js'
+
+    oh.require ['missing'], ->
+      expect(arguments.length).toBe 0
+      done()
