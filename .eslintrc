@@ -9,6 +9,6 @@
     "global-strict": [1, "always"],
     "no-underscore-dangle": 0,
     "no-extra-strict": 1,
-    "camelcase": 1
+    "camelcase": 0
   }
 }

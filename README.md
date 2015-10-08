@@ -27,6 +27,8 @@ Consider the following constraints:
 - This is not an RequireJS implementation.
 - Under development. &infin;
 
+Since `0.0.4` all callbacks are invoked after `DOMContentLoaded` is done.
+
 OMD was designed for working with existing libraries in the Bower registry.
 
 Most of them are in their own namespaces or their globals are not enough harmful.
