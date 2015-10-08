@@ -47,3 +47,12 @@ describe 'Oh my deps!', ->
     oh.require ['missing'], ->
       expect(arguments.length).toBe 0
       done()
+
+  it 'should allow to define sub-dependencies only', (done) ->
+    oh.define 'a', -> 'A'
+    oh.define 'b', -> 'B'
+    oh.define 'c', ['a', 'b'], (a, b) -> a + b
+
+    oh.require ['c'], (ab) ->
+      expect(ab).toEqual 'AB'
+      done()
